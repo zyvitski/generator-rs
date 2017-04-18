@@ -6,12 +6,12 @@ pub trait Wrap: Sized {
 impl Wrap for f64 {
     #[inline]
     fn wrap(&self, bounds: &(Self, Self)) -> Self {
-        let diff = bounds.0 - bounds.1;
+        let diff = bounds.1 - bounds.0;
         let mut value = *self;
-        while value > bounds.0 {
+        while value > bounds.1 {
             value -= diff;
         }
-        while value < bounds.1 {
+        while value < bounds.0 {
             value += diff;
         }
         value
@@ -20,12 +20,12 @@ impl Wrap for f64 {
 impl Wrap for f32 {
     #[inline]
     fn wrap(&self, bounds: &(Self, Self)) -> Self {
-        let diff = bounds.0 - bounds.1;
+        let diff = bounds.1 - bounds.0;
         let mut value = *self;
-        while value > bounds.0 {
+        while value > bounds.1 {
             value -= diff;
         }
-        while value < bounds.1 {
+        while value < bounds.0 {
             value += diff;
         }
         value
@@ -42,7 +42,7 @@ impl<T> Clamp for T
     #[inline]
     fn clamp(&self, bounds: &(Self, Self)) -> Self {
         let value = *self;
-        let (upper, lower) = *bounds;
+        let (lower, upper) = *bounds;
         if value > upper {
             upper
         } else if value < lower {
