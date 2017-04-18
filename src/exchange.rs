@@ -6,6 +6,7 @@ pub trait Exchange {
 impl<T> Exchange for T
     where T: Copy
 {
+    #[inline]
     fn exchange(&mut self, value: Self) -> Self {
         let out = *self;
         *self = value;
