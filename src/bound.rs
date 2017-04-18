@@ -1,32 +1,21 @@
 ///Wraps a value into bounds
+use num::Float;
 pub trait Wrap: Sized {
     fn wrap(&self, bounds: &(Self, Self)) -> Self;
 }
 
-impl Wrap for f64 {
+impl<T> Wrap for T
+    where T: Float
+{
     #[inline]
     fn wrap(&self, bounds: &(Self, Self)) -> Self {
         let diff = bounds.1 - bounds.0;
         let mut value = *self;
         while value > bounds.1 {
-            value -= diff;
+            value = value - diff;
         }
         while value < bounds.0 {
-            value += diff;
-        }
-        value
-    }
-}
-impl Wrap for f32 {
-    #[inline]
-    fn wrap(&self, bounds: &(Self, Self)) -> Self {
-        let diff = bounds.1 - bounds.0;
-        let mut value = *self;
-        while value > bounds.1 {
-            value -= diff;
-        }
-        while value < bounds.0 {
-            value += diff;
+            value = value + diff;
         }
         value
     }

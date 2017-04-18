@@ -1,3 +1,4 @@
+extern crate num;
 pub mod phasor;
 pub mod bound;
 pub mod generator;

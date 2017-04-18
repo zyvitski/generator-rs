@@ -1,5 +1,5 @@
 ///Basic Signal Generator Trait
-pub trait Generator<T>: Range<T> + Domain<T> + Iterator<Item = T>
+pub trait Generator<T>: Range<Item = T> + Domain<Item = T> + Iterator<Item = T>
     where T: Default
 {
     ///Sync to Default value for T
@@ -15,10 +15,12 @@ pub trait Generator<T>: Range<T> + Domain<T> + Iterator<Item = T>
 }
 
 ///Describes the Mathematical Range of a Type
-pub trait Range<T> {
-    fn range(&self) -> &(T, T);
+pub trait Range {
+    type Item;
+    fn range(&self) -> &(Self::Item, Self::Item);
 }
 ///Describes the Mathematical Domain of a Type
-pub trait Domain<T> {
-    fn domain(&self) -> &(T, T);
+pub trait Domain {
+    type Item;
+    fn domain(&self) -> &(Self::Item, Self::Item);
 }
