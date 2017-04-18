@@ -48,7 +48,7 @@ impl Iterator for Phasor<f64> {
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
         //Compute the next value
-        let value = self.value.wrap(&self.range);
+        let value = (self.value + self.step).wrap(&self.range);
         //Exchange it with the cuurent and return the original
         Some(self.value.exchange(value))
     }
@@ -80,7 +80,7 @@ impl Iterator for Phasor<f32> {
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
         //Compute the next value
-        let value = self.value.wrap(&self.range);
+        let value = (self.value + self.step).wrap(&self.range);
         //Exchange it with the cuurent and return the original
         Some(self.value.exchange(value))
     }
