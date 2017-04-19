@@ -55,3 +55,15 @@ impl<T, F> PredicateElse<F> for T
         if predicate(self) { *self } else { alternative }
     }
 }
+
+pub trait IsNormalElse: Float {
+    fn is_normal_else(&self, value: Self) -> Self;
+}
+
+impl<T> IsNormalElse for T
+    where T: Float
+{
+    fn is_normal_else(&self, value: Self) -> Self {
+        self.predicate_else(move |x| x.is_normal(), value)
+    }
+}
