@@ -24,3 +24,27 @@ fn bench_phasor_f32(b: &mut Bencher) {
     let mut p = test::black_box(Phasor::new(TEST_STEP_F32, TEST_DOMAIN_F32, TEST_RANGE_F32));
     b.iter(move || p.next().unwrap())
 }
+#[bench]
+fn bench_sine_f64(b: &mut Bencher) {
+    b.iter(move || test::black_box(0.0_f64).sine())
+}
+#[bench]
+fn bench_sine_f32(b: &mut Bencher) {
+    b.iter(move || test::black_box(0.0_f32).sine())
+}
+#[bench]
+fn bench_cosine_f64(b: &mut Bencher) {
+    b.iter(move || test::black_box(0.0_f64).cosine())
+}
+#[bench]
+fn bench_cosine_f32(b: &mut Bencher) {
+    b.iter(move || test::black_box(0.0_f32).cosine())
+}
+#[bench]
+fn bench_sinc_f64(b: &mut Bencher) {
+    b.iter(move || test::black_box(0.0_f64).sinc())
+}
+#[bench]
+fn bench_sinc_f32(b: &mut Bencher) {
+    b.iter(move || test::black_box(0.0_f32).sinc())
+}

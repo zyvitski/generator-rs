@@ -34,19 +34,17 @@ impl<T> Generator<T> for Phasor<T>
         &self.step
     }
 }
-impl<T> Range for Phasor<T>
+impl<T> Range<T> for Phasor<T>
     where T: Float
 {
-    type Item = T;
-    fn range(&self) -> &(Self::Item, Self::Item) {
+    fn range(&self) -> &(T, T) {
         &self.range
     }
 }
-impl<T> Domain for Phasor<T>
+impl<T> Domain<T> for Phasor<T>
     where T: Float
 {
-    type Item = T;
-    fn domain(&self) -> &(Self::Item, Self::Item) {
+    fn domain(&self) -> &(T, T) {
         &self.domain
     }
 }
