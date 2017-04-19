@@ -41,3 +41,17 @@ impl<T> Clamp for T
         }
     }
 }
+
+pub trait PredicateElse<F>
+    where F: Fn(&Self) -> bool
+{
+    fn predicate_else(&self, predicate: F, alternative: Self) -> Self;
+}
+impl<T, F> PredicateElse<F> for T
+    where T: Copy,
+          F: Fn(&Self) -> bool
+{
+    fn predicate_else(&self, predicate: F, alternative: Self) -> Self {
+        if predicate(self) { *self } else { alternative }
+    }
+}

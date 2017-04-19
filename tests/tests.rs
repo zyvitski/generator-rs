@@ -100,3 +100,10 @@ fn test_clamp_f32() {
     assert_eq!(value, 0.0_f32);
     assert!(in_bounds_f32(value, &bounds));
 }
+#[test]
+fn test_predicate_else() {
+    assert_eq!((0.5_f64).predicate_else(|value| *value > 0_f64, 1.0_f64),
+               0.5_f64);
+    assert_eq!((-0.5_f64).predicate_else(|value| *value > 0_f64, 1.0_f64),
+               1.0_f64);
+}
